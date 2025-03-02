@@ -1,0 +1,1 @@
+Usunięta została funkcja gets(). Była używana do odczytywania ze standardowego wejścia (stdin), ale z powodu niebezpiecznego zachowania np. braku limitu wprowadzanych znaków, co powodowało przepełnienie bufora, została usunięta.
