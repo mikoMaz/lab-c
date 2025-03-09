@@ -3,7 +3,7 @@
 int main()
 {
 	int c;
-	int lineCounter = 1;
+	int lineCounter = 0;
 	int characterCounter = 0;
 
 	while ((c = getchar()) != EOF) {

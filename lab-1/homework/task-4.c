@@ -2,7 +2,7 @@
 
 int main()
 {
-    for (int c = 0; c != EOF; c = getchar()) {
+    for (int c = 0; (c = getchar()) != EOF;)  {
         printf("%c", c);
     }
 
