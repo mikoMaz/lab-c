@@ -15,5 +15,8 @@ c89: c89.c
 guess_a_number: guess_a_number.c
 	$(CC) $(CFLAGS) $< random.a -o $@
 
+window: window.c
+	$(CC) $(CFLAGS) $< -o $@ -Iraylib/include -Lraylib/lib -lraylib
+
 %: %.c
 	$(CC) $(CFLAGS) $< -o $@
