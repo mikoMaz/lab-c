@@ -16,7 +16,7 @@ guess_a_number: guess_a_number.c
 	$(CC) $(CFLAGS) $< random.a -o $@
 
 window: window.c
-	$(CC) $(CFLAGS) $< -o $@ -Iraylib/include -Lraylib/lib -lraylib
+	$(CC) $(CFLAGS) $< -o $@ -Iraylib/include raylib/lib/libraylib.a -lm
 
 %: %.c
 	$(CC) $(CFLAGS) $< -o $@
