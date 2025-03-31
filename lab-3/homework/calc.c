@@ -29,17 +29,19 @@ int main()
                 printf("Wynik potęgowania: %.2f\n\n", result);
                 break;
             case 'l':
-                printf("Podaj liczbę: ");
-                scanf("%lf", &a);
-                if (a > 0) {
-                    result = log(a);
-                    printf("Logarytm naturalny z %.2f: %.2f\n\n", a, result);
+                printf("Podaj liczby: ");
+                scanf("%lf %lf", &a, &b);
+                if (a > 0 && b > 0 && b != 1) {
+                result = log(a) / log(b);
+                printf("Wynik logarytmu: %.2f\n\n", result);
                 } else {
-                    printf("Logarytm jest zdefiniowany tylko dla liczb dodatnich.\n\n");
+                    printf("Error!\n");
+                    return 1;
                 }
                 break;
             default:
                 continue;
         }
     }
+    return 0;
 }
