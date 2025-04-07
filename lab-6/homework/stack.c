@@ -105,16 +105,16 @@ int main() {
         list_stack_push(ls, rand());
     }
     clock_gettime(CLOCK_MONOTONIC, &end);
-    double push_time = (end.tv_sec - start.tv_sec) * 1000000.0 + (end.tv_nsec - start.tv_nsec) / 1000.0;
-    printf("Push %d elements: %.0f us\n", n, push_time);
+    double push_time = (end.tv_sec - start.tv_sec) * 1000.0 + (end.tv_nsec - start.tv_nsec) / 1000000.0;
+    printf("Push %d elements: %.3f ms\n", n, push_time);
 
     clock_gettime(CLOCK_MONOTONIC, &start);
     for (int i = 0; i < n; i++) {
         list_stack_pop(ls);
     }
     clock_gettime(CLOCK_MONOTONIC, &end);
-    double pop_time = (end.tv_sec - start.tv_sec) * 1000000.0 + (end.tv_nsec - start.tv_nsec) / 1000.0;
-    printf("Pop %d elements: %.0f us\n", n, pop_time);
+    double pop_time = (end.tv_sec - start.tv_sec) * 1000.0 + (end.tv_nsec - start.tv_nsec) / 1000000.0;
+    printf("Pop %d elements: %.3f ms\n", n, pop_time);
 
     list_stack_free(ls);
 
@@ -125,16 +125,16 @@ int main() {
         array_stack_push(as, rand());
     }
     clock_gettime(CLOCK_MONOTONIC, &end);
-    push_time = (end.tv_sec - start.tv_sec) * 1000000.0 + (end.tv_nsec - start.tv_nsec) / 1000.0;
-    printf("Push %d elements: %.0f us\n", n, push_time);
+    push_time = (end.tv_sec - start.tv_sec) * 1000.0 + (end.tv_nsec - start.tv_nsec) / 1000000.0;
+    printf("Push %d elements: %.3f ms\n", n, push_time);
 
     clock_gettime(CLOCK_MONOTONIC, &start);
     for (int i = 0; i < n; i++) {
         array_stack_pop(as);
     }
     clock_gettime(CLOCK_MONOTONIC, &end);
-    pop_time = (end.tv_sec - start.tv_sec) * 1000000.0 + (end.tv_nsec - start.tv_nsec) / 1000.0;
-    printf("Pop %d elements: %.0f us\n", n, pop_time);
+    pop_time = (end.tv_sec - start.tv_sec) * 1000.0 + (end.tv_nsec - start.tv_nsec) / 1000000.0;
+    printf("Pop %d elements: %.3f ms\n", n, pop_time);
 
     array_stack_free(as);
 

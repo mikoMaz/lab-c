@@ -3,10 +3,6 @@
 #include <time.h>
 #include "bst.h"
 
-double measure_time_ms(clock_t start, clock_t end) {
-    return ((double)(end - start) * 1000) / CLOCKS_PER_SEC;
-}
-
 int* generate_test_values(int n, int* test_size) {
     *test_size = n / 2;
     int* test = (int*)malloc(*test_size * sizeof(int));
@@ -31,11 +27,11 @@ int main() {
 
     for (int order = 0; order < num_orders; order++) {
         bst* root = NULL;
-        clock_t start, end;
+        struct timespec start, end;
 
         printf("\nOrder: %s\n", orders[order]);
 
-        start = clock();
+        clock_gettime(CLOCK_MONOTONIC, &start);
         if (order == 0) {
             for (int i = 0; i <= n; i++) {
                 root = bst_insert(root, i);
@@ -60,20 +56,23 @@ int main() {
             }
             free(temp);
         }
-        end = clock();
-        printf("Insertion took: %.0f ms\n", measure_time_ms(start, end));
+        clock_gettime(CLOCK_MONOTONIC, &end);
+        double insert_time = (end.tv_sec - start.tv_sec) * 1000.0 + (end.tv_nsec - start.tv_nsec) / 1000000.0;
+        printf("Insertion took: %.3f ms\n", insert_time);
 
-        start = clock();
+        clock_gettime(CLOCK_MONOTONIC, &start);
         for (int i = 0; i < test_size; i++) {
             bst_search(root, test[i]);
         }
-        end = clock();
-        printf("Search took: %.0f ms\n", measure_time_ms(start, end));
+        clock_gettime(CLOCK_MONOTONIC, &end);
+        double search_time = (end.tv_sec - start.tv_sec) * 1000.0 + (end.tv_nsec - start.tv_nsec) / 1000000.0;
+        printf("Search took: %.3f ms\n", search_time);
 
-        start = clock();
+        clock_gettime(CLOCK_MONOTONIC, &start);
         bst_free(root);
-        end = clock();
-        printf("Deallocation took: %.0f ms\n", measure_time_ms(start, end));
+        clock_gettime(CLOCK_MONOTONIC, &end);
+        double dealloc_time = (end.tv_sec - start.tv_sec) * 1000.0 + (end.tv_nsec - start.tv_nsec) / 1000000.0;
+        printf("Deallocation took: %.3f ms\n", dealloc_time);
     }
 
     free(test);
